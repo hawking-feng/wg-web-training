@@ -3,9 +3,9 @@
         <div class="title-container">
             <span class="title">{{tabTitle}}</span>
             <div class="percent">
-                <Icon type="md-arrow-dropup" class="increase" v-if="percent > 0"/>
+                <Icon type="md-arrow-dropup" class="increase" v-if="percent >= 0"/>
                 <Icon type="md-arrow-dropdown" class="fall" v-else/>
-                <span :class='[percent>0?"increase":"fall"]'>{{percent}}%</span>
+                <span :class='[percent>=0?"increase":"fall"]'>{{percent}}%</span>
             </div>
         </div>
         <div class="total-number">{{number}}</div>
