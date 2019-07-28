@@ -2,16 +2,16 @@
     <div class="container">
         <ContainerHeader :title="title"></ContainerHeader>
         <div class="analysis-tabs">
-            <AnalysisTab v-for="(item,index) in tabsData" :key="index"
+            <AnalysisTab v-for="(item,index) in chartData" :key="index"
                          @changeSelectedTabIndex="changeSelectedTabIndex"
-                         :tabTitle="item.tablTitle"
-                         :percent="item.percent"
-                         :number="item.number"
+                         :tabTitle="item.metricName"
+                         :percent="item.fluctuate"
+                         :number="item.total"
                          :index="index"
                          :isActive="index==selected">
             </AnalysisTab>
         </div>
-        <PageView></PageView>
+        <PageView @renderCharts="renderCharts"></PageView>
 
     </div>
 </template>
@@ -26,26 +26,23 @@
         components: {AnalysisTab, PageView, ContainerHeader},
         data() {
             return {
+                chart: null,
                 selected: 0,
                 title: "访问分析",
-                tabsData:[{
-                    tablTitle: "总访问量",
-                    percent: 15,
-                    number: '204,138'
-                },{
-                    tablTitle: "总访客数",
-                    percent: 15,
-                    number: '9,624'
-                },{
-                    tablTitle: "总访问时长",
-                    percent: -8,
-                    number: '8时34分22秒'
-                },]
+                chartData: [],
             }
         },
         methods: {
             changeSelectedTabIndex: function (index) {
                 this.selected = index;
+                this.chart.showLoading();
+                this.chart.mergeOptions(this.chartData[index].options);
+                this.chart.hideLoading();
+
+            },
+            renderCharts: function(chart, chartData) {
+                this.chartData = chartData;
+                this.chart = chart;
             }
         }
     }

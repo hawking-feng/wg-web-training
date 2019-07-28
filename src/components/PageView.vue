@@ -41,8 +41,11 @@
                 console.log(chartsData);
                 console.log('--------- look here: data structure ---------');
 
+                this.$emit("renderCharts", this.$refs.chart, chartsData)
+
                 this.$refs.chart.mergeOptions(chartsData[0].options);
                 this.$refs.chart.hideLoading();
+
             }
         }
     }
