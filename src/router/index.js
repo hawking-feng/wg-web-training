@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import PageView from "../components/PageView"
 import FirstCourse from '../components/FirstCourse'
 import AnalysisPage from '../components/AnalysisPage'
+import HeatMap from '../components/HeatMap'
 
 Vue.use(Router);
 
@@ -11,9 +12,14 @@ export default new Router({
     routes: [
         {
             path: '/',
-            name: 'AnalysisPage',
-            component: AnalysisPage
+            name: 'HeatMap',
+            component: HeatMap
         },
+        // {
+        //     path: '/',
+        //     name: 'AnalysisPage',
+        //     component: AnalysisPage
+        // },
         {
             path: '/firstCourse',
             name: 'FirstCourse',
